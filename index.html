@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentejax | Construa Seu Agente de IA Pessoal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - emerald (T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+
+    /* Light mode - blue (T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37, 99, 235, 0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+
+    /* Light mode - purple (T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124, 58, 237, 0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124, 58, 237, 0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+
+    /* Light mode - red */
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(220, 38, 38, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.08); }
+
+    /* Light mode - remove gradientes */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+
+    /* Light mode - especiais */
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .bg-primary\/20 { background-color: rgba(161, 98, 7, 0.12); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+
+    /* Picker card states */
+    .picker-card { transition: all 0.2s; }
+    .picker-card.selected { border-color: #FACC15; background-color: rgba(250, 204, 21, 0.05); }
+    .picker-card.locked .picker-checkbox { opacity: 0.4; cursor: not-allowed; }
+    html:not(.dark) .picker-card.selected { background-color: rgba(161, 98, 7, 0.05); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🤖</span>
+            <span class="font-bold text-lg hidden sm:inline">Agentejax</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="curso/trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span>
+            <span class="hidden sm:inline">Fundamentos</span>
+          </a>
+          <a href="#trilha2" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span>
+            <span class="hidden sm:inline">Vida do Agente</span>
+          </a>
+          <a href="#trilha3" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span>
+            <span class="hidden sm:inline">Produção</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="bg-gradient-to-br from-dark-800 via-dark-800 to-dark-900 py-20 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-full mb-6">CURSO PRÁTICO · MIT · 100% SEU CÓDIGO</span>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6 leading-tight">Construa seu agente de IA pessoal<br><span class="text-primary">de ponta a ponta</span></h1>
+      <p class="text-lg text-neutral-300 max-w-3xl mx-auto mb-10">Um assistente que mora no seu Telegram, lembra de você, age sozinho 24/7 e usa as ferramentas que você escolher. Em TypeScript. Sem framework fechado. Você é dono de cada linha.</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto mb-10">
+        <div class="bg-dark-800/50 rounded-lg p-4 border border-dark-600">
+          <div class="text-2xl font-bold text-primary">3</div>
+          <div class="text-xs text-neutral-400 mt-1">Trilhas</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 border border-dark-600">
+          <div class="text-2xl font-bold text-primary">9</div>
+          <div class="text-xs text-neutral-400 mt-1">Módulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 border border-dark-600">
+          <div class="text-2xl font-bold text-primary">54</div>
+          <div class="text-xs text-neutral-400 mt-1">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 border border-dark-600">
+          <div class="text-2xl font-bold text-primary">~6h</div>
+          <div class="text-xs text-neutral-400 mt-1">Duração</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-start sm:justify-center gap-3">
+        <a href="curso/trilha1/index.html" class="px-6 py-3 bg-primary text-dark-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors">Começar pela Trilha 1 →</a>
+        <a href="#blueprint" class="px-6 py-3 bg-dark-700 text-neutral-100 rounded-lg font-semibold hover:bg-dark-600 transition-colors">Montar meu Blueprint</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- POR QUE CONSTRUIR O SEU? -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Por que construir o seu, em vez de usar pronto?</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto">Existem ótimos frameworks de agente prontos. Mas todos têm um teto. Aqui é a comparação honesta entre os dois mais conhecidos e a abordagem deste curso.</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-xl border border-dark-600">
+      <table class="w-full text-sm">
+        <thead class="bg-dark-800">
+          <tr>
+            <th class="text-left p-4 font-semibold text-neutral-300">Aspecto</th>
+            <th class="text-left p-4 font-semibold text-neutral-300">Hermes</th>
+            <th class="text-left p-4 font-semibold text-neutral-300">OpenClaw</th>
+            <th class="text-left p-4 font-semibold text-primary">Agentejax (este curso)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-dark-600">
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Linguagem</td>
+            <td class="p-4 text-neutral-400">Python</td>
+            <td class="p-4 text-neutral-400">TypeScript</td>
+            <td class="p-4 text-neutral-300">TypeScript</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Modelo de uso</td>
+            <td class="p-4 text-neutral-400">Você instala e usa</td>
+            <td class="p-4 text-neutral-400">Você instala e usa</td>
+            <td class="p-4 text-neutral-300">Você <strong class="text-primary">aprende e constrói</strong></td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Curva inicial</td>
+            <td class="p-4 text-neutral-400">Baixa (clone, configura)</td>
+            <td class="p-4 text-neutral-400">Baixa (clone, configura)</td>
+            <td class="p-4 text-neutral-300">Média (segue 3 trilhas)</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Quem entende o código</td>
+            <td class="p-4 text-neutral-400">O time deles</td>
+            <td class="p-4 text-neutral-400">O time deles</td>
+            <td class="p-4 text-neutral-300"><strong class="text-emerald-400">Você</strong></td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Customização profunda</td>
+            <td class="p-4 text-neutral-400">Fork e mantém</td>
+            <td class="p-4 text-neutral-400">Fork e mantém</td>
+            <td class="p-4 text-neutral-300">Direto no seu repo</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Memória multi-camada</td>
+            <td class="p-4 text-emerald-400">Sim (4 camadas)</td>
+            <td class="p-4 text-emerald-400">Sim</td>
+            <td class="p-4 text-emerald-400">Sim (3 camadas, T1 M1.2)</td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Skills auto-geradas</td>
+            <td class="p-4 text-emerald-400">Sim (nativo)</td>
+            <td class="p-4 text-emerald-400">Sim (registry público)</td>
+            <td class="p-4 text-emerald-400">Opcional (T2 M2.3)</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Voz</td>
+            <td class="p-4 text-emerald-400">Sim</td>
+            <td class="p-4 text-emerald-400">Sim (mobile nativo)</td>
+            <td class="p-4 text-emerald-400">Opcional (T2 M2.2)</td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Canais de mensagem</td>
+            <td class="p-4 text-neutral-300">15+</td>
+            <td class="p-4 text-neutral-300">22+</td>
+            <td class="p-4 text-neutral-300">Telegram (extensível)</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Multi-agente</td>
+            <td class="p-4 text-neutral-400">Limitado</td>
+            <td class="p-4 text-emerald-400">Sim</td>
+            <td class="p-4 text-neutral-400">Out-of-scope (você adiciona)</td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Cliente mobile nativo</td>
+            <td class="p-4 text-red-400">Não</td>
+            <td class="p-4 text-emerald-400">Sim</td>
+            <td class="p-4 text-neutral-400">Telegram já é mobile</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">Aprovações de ações</td>
+            <td class="p-4 text-neutral-400">Trust levels</td>
+            <td class="p-4 text-emerald-400">Por comando</td>
+            <td class="p-4 text-emerald-400">Por comando (T3 M3.1)</td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Lock-in</td>
+            <td class="p-4 text-neutral-400">Roadmap deles</td>
+            <td class="p-4 text-neutral-400">Roadmap deles</td>
+            <td class="p-4 text-emerald-400">Zero</td>
+          </tr>
+          <tr>
+            <td class="p-4 font-medium">License</td>
+            <td class="p-4 text-neutral-300">MIT</td>
+            <td class="p-4 text-neutral-300">MIT</td>
+            <td class="p-4 text-neutral-300">MIT</td>
+          </tr>
+          <tr class="bg-dark-900/50">
+            <td class="p-4 font-medium">Quando faz mais sentido</td>
+            <td class="p-4 text-neutral-400">Quero rodar hoje, sem mexer</td>
+            <td class="p-4 text-neutral-400">Quero ecossistema com loja de skills</td>
+            <td class="p-4 text-neutral-300"><strong class="text-primary">Quero entender e ser dono</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+      <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+        <h4 class="font-bold text-emerald-400 mb-3">✓ Construa o seu se</h4>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Você quer entender cada linha que roda</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Vai depender desse agente em tarefas críticas</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quer trocar de modelo (Claude / GPT / DeepSeek / Ollama) sem dor</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quer adicionar ferramentas próprias (CRM, banco, ERP)</span></li>
+        </ul>
+      </div>
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+        <h4 class="font-bold text-red-400 mb-3">✗ Use um pronto se</h4>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Você só quer testar a ideia em 1 hora</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Não quer manter código TypeScript no longo prazo</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Precisa de integrações de mobile nativo prontas</span></li>
+          <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Não tem interesse em entender como agentes funcionam por dentro</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AS 3 TRILHAS -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-dark-600">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">As 3 trilhas do curso</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto">Cada trilha tem 3 módulos com 6 tópicos. Pode seguir do início ou pular pra parte que te interessa — cada módulo se sustenta sozinho.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="curso/trilha1/index.html" id="trilha1" class="group bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 hover:bg-emerald-500/10 transition-colors">
+        <span class="inline-block px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-3">TRILHA 1</span>
+        <h3 class="text-2xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">🌱 Fundamentos</h3>
+        <p class="text-neutral-400 text-sm mb-4">Do zero até o agente respondendo: ambiente, identidade, memória, ferramentas e o loop principal.</p>
+        <div class="flex items-center justify-between text-xs text-neutral-500">
+          <span>3 módulos · 18 tópicos</span>
+          <span class="text-emerald-400 font-semibold">Começar →</span>
+        </div>
+      </a>
+      <a href="#" id="trilha2" class="group bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 hover:bg-blue-500/10 transition-colors">
+        <span class="inline-block px-2 py-0.5 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-3">TRILHA 2</span>
+        <h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">⚡ Vida do Agente</h3>
+        <p class="text-neutral-400 text-sm mb-4">Comunicação 24/7 no Telegram, streaming, voz, autonomia, reflexão e skills que ele cria sozinho.</p>
+        <div class="flex items-center justify-between text-xs text-neutral-500">
+          <span>3 módulos · 18 tópicos</span>
+          <span class="text-blue-400 font-semibold">Em breve</span>
+        </div>
+      </a>
+      <a href="#" id="trilha3" class="group bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 hover:bg-purple-500/10 transition-colors">
+        <span class="inline-block px-2 py-0.5 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-3">TRILHA 3</span>
+        <h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">🛡 Produção</h3>
+        <p class="text-neutral-400 text-sm mb-4">MCP, aprovações, defesa contra prompt injection, custos, dashboard, hospedagem 24/7 e testes.</p>
+        <div class="flex items-center justify-between text-xs text-neutral-500">
+          <span>3 módulos · 18 tópicos</span>
+          <span class="text-purple-400 font-semibold">Em breve</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- BLUEPRINT PICKER -->
+  <section id="blueprint" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-dark-600">
+    <div class="text-center mb-12">
+      <span class="inline-block px-3 py-1 bg-primary/20 text-primary text-xs font-semibold rounded-full mb-4">FERRAMENTA INTERATIVA</span>
+      <h2 class="text-3xl font-bold mb-4">Monte seu blueprint</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto">Marque as features que quer no seu agente e baixe um arquivo .md com seu plano de build personalizado. Os 6 itens marcados como núcleo são obrigatórios — o resto é decisão sua.</p>
+    </div>
+
+    <!-- Controles -->
+    <div class="flex flex-wrap items-center gap-3 mb-6 p-4 bg-dark-800 rounded-xl border border-dark-600">
+      <button onclick="selectAll()" class="px-4 py-2 text-sm bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors">Selecionar tudo</button>
+      <button onclick="clearAll()" class="px-4 py-2 text-sm bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors">Limpar opcionais</button>
+      <button onclick="recommended()" class="px-4 py-2 text-sm bg-primary/20 text-primary hover:bg-primary/30 rounded-lg transition-colors font-semibold">⭐ Perfil recomendado</button>
+      <input type="search" id="picker-search" placeholder="Buscar feature..." class="flex-1 min-w-[180px] px-4 py-2 text-sm bg-dark-700 border border-dark-600 rounded-lg focus:outline-none focus:border-primary">
+    </div>
+
+    <!-- Grid de cards -->
+    <div id="picker-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
+
+    <!-- Barra de download -->
+    <div class="sticky bottom-4 bg-dark-800 border border-primary/40 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-2xl">
+      <div class="text-sm">
+        <span id="picker-counter" class="font-bold text-primary">0</span>
+        <span class="text-neutral-400">features selecionadas no seu blueprint</span>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="downloadBlueprint()" class="px-5 py-2 bg-primary text-dark-900 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">⬇ Baixar .md</button>
+        <button onclick="copyPrompt()" class="px-5 py-2 bg-dark-700 hover:bg-dark-600 rounded-lg font-semibold transition-colors">📋 Copiar prompt</button>
+      </div>
+    </div>
+    <p class="text-xs text-neutral-500 mt-3 text-center">O prompt é pra você colar numa IA (Claude, ChatGPT) e pedir pra ela construir só o que você marcou.</p>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-dark-600">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Como o curso é organizado</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary font-bold text-xl flex items-center justify-center mb-4">1</div>
+        <h3 class="text-lg font-semibold mb-2">Cada tópico tem 3 seções</h3>
+        <p class="text-neutral-400 text-sm">O que é, por que aprender, e os conceitos-chave. Você pega o essencial sem precisar ler tudo.</p>
+      </div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary font-bold text-xl flex items-center justify-center mb-4">2</div>
+        <h3 class="text-lg font-semibold mb-2">Modal ou página completa</h3>
+        <p class="text-neutral-400 text-sm">Cada módulo abre num modal pra leitura rápida ou em página dedicada com casos práticos e código.</p>
+      </div>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+        <div class="w-12 h-12 rounded-full bg-primary/20 text-primary font-bold text-xl flex items-center justify-center mb-4">3</div>
+        <h3 class="text-lg font-semibold mb-2">Light e dark mode</h3>
+        <p class="text-neutral-400 text-sm">Lê de noite no escuro, lê de dia no claro. Tudo otimizado pra leitura longa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Agentejax · MIT License · 2026</p>
+      <p class="mt-1"><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // ============== THEME TOGGLE ==============
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    if (localStorage.getItem('theme') === 'light') {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // ============== BLUEPRINT PICKER ==============
+    const features = [
+      { id: 'telegram-bot', title: 'Bot do Telegram', emoji: '💬', trilha: 'T1', modulo: '1.1', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'O canal por onde você fala com o agente. Cria via @BotFather, pega o token e conecta.',
+        when: 'Sempre — é a porta de entrada do sistema.', skip: 'Não tem como pular sem trocar por outro canal (Discord, Slack).' },
+      { id: 'llm-key', title: 'Chave de modelo (LLM)', emoji: '🔑', trilha: 'T1', modulo: '1.1', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'A credencial pra falar com Claude, GPT, DeepSeek ou Ollama local. Pode trocar a quente.',
+        when: 'Sempre — sem isso o agente não pensa.', skip: 'Impossível pular.' },
+      { id: 'bootstrap', title: 'Bootstrap do projeto', emoji: '📦', trilha: 'T1', modulo: '1.1', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Node 20+, TypeScript, package.json, estrutura de pastas e o primeiro "olá mundo".',
+        when: 'Sempre — é o esqueleto.', skip: 'Não tem como pular.' },
+      { id: 'soul', title: 'Personalidade (soul.md)', emoji: '🎭', trilha: 'T1', modulo: '1.2', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Um arquivo Markdown que define tom, regras, o que ele faz e o que recusa fazer.',
+        when: 'Sempre — sem isso ele responde genérico.', skip: 'Não pular — mas dá pra começar simples.' },
+      { id: 'memoria-curta', title: 'Memória de curto prazo', emoji: '🧠', trilha: 'T1', modulo: '1.2', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Buffer SQLite das últimas N mensagens + fatos centrais sobre você (nome, fuso, metas).',
+        when: 'Sempre — sem isso ele esquece a cada mensagem.', skip: 'Impossível.' },
+      { id: 'memoria-semantica', title: 'Memória semântica (vetorial)', emoji: '🔍', trilha: 'T1', modulo: '1.2', categoria: 'opcional', recommended: true,
+        what: 'Indexa todo histórico em vetores (Pinecone ou local) e recupera por similaridade, não por recência.',
+        when: 'Você quer que ele lembre de algo dito há 2 meses.', skip: 'Conversas curtas e descartáveis bastam.' },
+      { id: 'llm-layer', title: 'Camada de LLM trocável', emoji: '🔌', trilha: 'T1', modulo: '1.3', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Abstração que deixa você trocar Claude por GPT por DeepSeek mudando uma variável.',
+        when: 'Sempre — futuros modelos sairão. Você quer poder trocar.', skip: 'Não pular.' },
+      { id: 'tools', title: 'Sistema de ferramentas', emoji: '🛠', trilha: 'T1', modulo: '1.3', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'O contrato JSON Schema que deixa o LLM chamar funções suas (ler arquivo, buscar web, etc).',
+        when: 'Sempre — sem ferramentas o agente só conversa.', skip: 'Impossível.' },
+      { id: 'agent-loop', title: 'Loop do agente', emoji: '🔄', trilha: 'T1', modulo: '1.3', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Receber → pensar → chamar ferramenta → ler resultado → repetir até finalizar.',
+        when: 'Sempre — é o coração do sistema.', skip: 'Não tem como.' },
+      { id: 'heartbeat', title: 'Heartbeat (cron autônomo)', emoji: '⏰', trilha: 'T2', modulo: '2.1', categoria: 'opcional', recommended: true,
+        what: 'Cron que dispara o agente sem você mandar mensagem ("toda 8h, resumir email").',
+        when: 'Você quer rotinas automáticas, não só responder.', skip: 'Só quer um chatbot reativo.' },
+      { id: 'streaming', title: 'Streaming de respostas', emoji: '📡', trilha: 'T2', modulo: '2.2', categoria: 'opcional',
+        what: 'Edita a mensagem do Telegram em tempo real conforme o LLM gera, em vez de esperar tudo.',
+        when: 'Respostas longas — sensação de "ele tá pensando agora".', skip: 'Respostas curtas (< 2s) não precisam.' },
+      { id: 'voz', title: 'Voz (entrada e saída)', emoji: '🎤', trilha: 'T2', modulo: '2.2', categoria: 'opcional', recommended: true,
+        what: 'Você manda áudio no Telegram, ele transcreve, processa e pode até responder em áudio.',
+        when: 'Você quer falar dirigindo, na rua, sem digitar.', skip: 'Só usa em frente ao computador.' },
+      { id: 'reflexao', title: 'Reflexão noturna', emoji: '🌙', trilha: 'T2', modulo: '2.3', categoria: 'opcional', recommended: true,
+        what: 'Todo dia o agente relê conversas recentes e consolida em fatos centrais ("o usuário prefere X").',
+        when: 'Vai usar o agente por meses — quer que ele aprenda você.', skip: 'Uso pontual de poucas semanas.' },
+      { id: 'auto-skills', title: 'Skills auto-geradas', emoji: '✨', trilha: 'T2', modulo: '2.3', categoria: 'opcional', recommended: true,
+        what: 'Depois de 5+ tool calls numa tarefa, o agente escreve um arquivo skill.md pra repetir mais rápido.',
+        when: 'Você faz tarefas repetidas (research, follow-up, relatórios).', skip: 'Tarefas sempre diferentes.' },
+      { id: 'multi-user', title: 'Multi-usuário', emoji: '👥', trilha: 'T2', modulo: '2.3', categoria: 'opcional',
+        what: 'Mesmo agente atende várias pessoas, com memória separada por usuário.',
+        when: 'Vai compartilhar com família ou time.', skip: 'É só seu — fica mais simples e seguro single-user.' },
+      { id: 'mcp', title: 'Servidores MCP', emoji: '🔗', trilha: 'T3', modulo: '3.1', categoria: 'opcional', recommended: true,
+        what: 'Protocolo padrão (Model Context Protocol) — plugue centenas de integrações prontas (Notion, GitHub, etc).',
+        when: 'Quer plugar serviços sem reescrever cada integração.', skip: 'Só usa 2-3 ferramentas próprias.' },
+      { id: 'aprovacoes', title: 'Aprovações de ações', emoji: '🛂', trilha: 'T3', modulo: '3.1', categoria: 'opcional', recommended: true,
+        what: 'Antes de ações destrutivas (deletar arquivo, mandar email), o agente pergunta com botões inline.',
+        when: 'Ele tem ferramentas perigosas (mexe em banco, manda emails).', skip: 'Só ferramentas read-only.' },
+      { id: 'injection-defense', title: 'Defesa contra prompt injection', emoji: '🛡', trilha: 'T3', modulo: '3.1', categoria: 'opcional', recommended: true,
+        what: 'Marca outputs de ferramenta com tags pro LLM não confundir com instruções do usuário.',
+        when: 'Ele lê conteúdo da web, emails, PDFs (qualquer fonte hostil).', skip: 'Só dados confiáveis.' },
+      { id: 'custos', title: 'Rastreamento de custos', emoji: '💰', trilha: 'T3', modulo: '3.2', categoria: 'opcional', recommended: true,
+        what: 'Loga tokens por conversa, calcula custo em USD/dia, alerta se passar de limite.',
+        when: 'Sempre — pra não tomar susto na fatura.', skip: 'Só Ollama local (zero custo).' },
+      { id: 'dashboard', title: 'Dashboard de controle', emoji: '📊', trilha: 'T3', modulo: '3.2', categoria: 'opcional',
+        what: 'Mini app web pra ver conversas, custos, skills, memória — tudo do agente em um lugar.',
+        when: 'Você quer auditar e ajustar visualmente.', skip: 'Telegram + logs já bastam.' },
+      { id: 'hosting', title: 'Hospedagem 24/7', emoji: '☁️', trilha: 'T3', modulo: '3.3', categoria: 'núcleo', recommended: true, locked: true,
+        what: 'Roda no Railway, Docker, VPS ou systemd — não dependendo do seu laptop ligado.',
+        when: 'Sempre — pra ele responder quando você não tá.', skip: 'Só pra teste local.' },
+      { id: 'testes', title: 'Testes automatizados', emoji: '✅', trilha: 'T3', modulo: '3.3', categoria: 'opcional',
+        what: 'Suite de testes pras peças críticas (memória, tool calls, loop) — pra refatorar com confiança.',
+        when: 'Vai evoluir o agente por meses.', skip: 'Hack de fim de semana descartável.' }
+    ];
+
+    const grid = document.getElementById('picker-grid');
+    const counter = document.getElementById('picker-counter');
+    const search = document.getElementById('picker-search');
+
+    function trilhaColor(t) {
+      return { T1: 'emerald', T2: 'blue', T3: 'purple' }[t];
+    }
+
+    function render(filter = '') {
+      grid.innerHTML = '';
+      const f = filter.toLowerCase().trim();
+      features.forEach(feat => {
+        if (f && !(feat.title.toLowerCase().includes(f) || feat.what.toLowerCase().includes(f))) return;
+        const c = trilhaColor(feat.trilha);
+        const checked = feat.locked || feat.selected ? 'checked' : '';
+        const lockedClass = feat.locked ? 'locked' : '';
+        const selectedClass = (feat.locked || feat.selected) ? 'selected' : '';
+        const card = document.createElement('div');
+        card.className = `picker-card ${selectedClass} ${lockedClass} bg-dark-800 rounded-xl border border-dark-600 p-5`;
+        card.dataset.id = feat.id;
+        card.innerHTML = `
+          <div class="flex items-start justify-between mb-3">
+            <div class="flex items-center space-x-2">
+              <span class="text-2xl">${feat.emoji}</span>
+              <span class="px-2 py-0.5 bg-${c}-500/20 text-${c}-400 text-xs font-semibold rounded-full">${feat.trilha} · M${feat.modulo}</span>
+            </div>
+            <input type="checkbox" class="picker-checkbox w-5 h-5" ${checked} ${feat.locked ? 'disabled' : ''} onchange="toggleFeature('${feat.id}', this.checked)">
+          </div>
+          <h3 class="font-bold text-base mb-1">${feat.title}</h3>
+          <p class="text-xs text-neutral-400 mb-3">${feat.what}</p>
+          <div class="space-y-1 text-xs">
+            <p><span class="text-emerald-400 font-semibold">Quando usar:</span> <span class="text-neutral-300">${feat.when}</span></p>
+            <p><span class="text-red-400 font-semibold">Quando pular:</span> <span class="text-neutral-300">${feat.skip}</span></p>
+          </div>
+          ${feat.locked ? '<p class="text-xs text-primary mt-3 font-semibold">🔒 Núcleo — sempre incluído</p>' : ''}
+          ${feat.recommended && !feat.locked ? '<p class="text-xs text-primary mt-3 font-semibold">⭐ Recomendado</p>' : ''}
+        `;
+        grid.appendChild(card);
+      });
+      updateCounter();
+    }
+
+    function toggleFeature(id, checked) {
+      const feat = features.find(f => f.id === id);
+      if (feat && !feat.locked) {
+        feat.selected = checked;
+        const card = grid.querySelector(`[data-id="${id}"]`);
+        if (card) card.classList.toggle('selected', checked);
+      }
+      updateCounter();
+    }
+
+    function updateCounter() {
+      const n = features.filter(f => f.locked || f.selected).length;
+      counter.textContent = n;
+    }
+
+    function selectAll() {
+      features.forEach(f => f.selected = true);
+      render(search.value);
+    }
+
+    function clearAll() {
+      features.forEach(f => { if (!f.locked) f.selected = false; });
+      render(search.value);
+    }
+
+    function recommended() {
+      features.forEach(f => f.selected = !!f.recommended);
+      render(search.value);
+    }
+
+    function buildMarkdown() {
+      const selected = features.filter(f => f.locked || f.selected);
+      const date = new Date().toISOString().slice(0, 10);
+      let md = `# Meu Blueprint — Agentejax\n\nGerado em ${date}\nFeatures escolhidas: ${selected.length}/${features.length}\n\n---\n\n`;
+      md += `## O que vai ser construído\n\nUm agente de IA pessoal em TypeScript, rodando no Telegram, com as seguintes capacidades:\n\n`;
+      const byTrilha = { T1: [], T2: [], T3: [] };
+      selected.forEach(f => byTrilha[f.trilha].push(f));
+      const trilhaNames = { T1: '🌱 Trilha 1 — Fundamentos', T2: '⚡ Trilha 2 — Vida do Agente', T3: '🛡 Trilha 3 — Produção' };
+      ['T1', 'T2', 'T3'].forEach(t => {
+        if (byTrilha[t].length === 0) return;
+        md += `\n### ${trilhaNames[t]}\n\n`;
+        byTrilha[t].forEach(f => {
+          md += `#### ${f.emoji} ${f.title} (M${f.modulo})\n\n`;
+          md += `**O que é:** ${f.what}\n\n`;
+          md += `**Quando usar:** ${f.when}\n\n`;
+          md += `**Quando pular:** ${f.skip}\n\n`;
+          if (f.locked) md += `_Núcleo — obrigatório_\n\n`;
+        });
+      });
+      md += `\n---\n\n## Próximos passos\n\n1. Clone este curso ou abra a Trilha 1 (Fundamentos) no navegador\n2. Siga os módulos na ordem das trilhas marcadas\n3. Use este blueprint como referência do escopo do seu projeto\n4. Quando terminar, seu agente vai estar rodando no Telegram 24/7\n\n_Agentejax · MIT License_\n`;
+      return md;
+    }
+
+    function downloadBlueprint() {
+      const md = buildMarkdown();
+      const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'meu-blueprint-agentejax.md';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function copyPrompt() {
+      const selected = features.filter(f => f.locked || f.selected);
+      const list = selected.map(f => `- ${f.title}: ${f.what}`).join('\n');
+      const prompt = `Quero construir um agente de IA pessoal em TypeScript, rodando no Telegram. Estas são as features que escolhi (em ordem das trilhas do curso):\n\n${list}\n\nProssiga assim:\n1. Liste a estrutura de pastas e arquivos que vai criar\n2. Confirme comigo antes de começar\n3. Implemente módulo por módulo, mostrando cada arquivo\n4. No final, me dê o comando pra rodar localmente\n\nUse boas práticas de TypeScript, .env pra segredos, e commit incremental no git.`;
+      navigator.clipboard.writeText(prompt).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = '✓ Copiado!';
+        setTimeout(() => btn.textContent = original, 2000);
+      });
+    }
+
+    search.addEventListener('input', e => render(e.target.value));
+
+    // Inicialização: marca recomendados por padrão
+    features.forEach(f => { if (f.recommended) f.selected = true; });
+    render();
+  </script>
+
+</body>
+</html>

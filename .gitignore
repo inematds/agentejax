@@ -1,0 +1,27 @@
+# Reference docs (kept local, not pushed)
+claude-agent-2.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+.claude/
+
+# Node (caso vire projeto Node no futuro)
+node_modules/
+dist/
+build/
+*.log
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Generated / temp
+tmp/
+temp/

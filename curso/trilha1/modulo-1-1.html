@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.1 · Preparação e Ambiente | Agentejax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.06); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.06); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(220, 38, 38, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.06); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🤖</span>
+            <span class="font-bold text-lg hidden sm:inline">Agentejax</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../../index.html#trilha2" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Vida do Agente</span></a>
+          <a href="../../index.html#trilha3" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Produção</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">⚙️ Preparação e Ambiente</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Antes de qualquer linha de código do agente, esses 6 passos garantem que sua máquina, suas chaves e seu projeto estão prontos pra trabalhar juntos.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Setup</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.1</span>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">💬 Bot do Telegram</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O canal por onde você vai falar com seu agente é um <strong class="text-emerald-400">bot do Telegram</strong>. Bot é uma conta automática — você não loga manualmente, é seu código que controla. A criação leva 2 minutos e o resultado é um token, que é a chave que dá ao seu programa permissão pra ler e enviar mensagens.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Como criar em 5 passos</h3>
+        <ol class="space-y-2 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">1.</span><span>No Telegram, abra conversa com <strong>@BotFather</strong> (o bot oficial pra criar outros bots).</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">2.</span><span>Mande <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">/newbot</code>.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">3.</span><span>Escolha um nome de exibição (qualquer um) e um username terminado em <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">_bot</code>.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">4.</span><span>Copie o <strong class="text-emerald-400">token</strong> que ele envia (parecido com <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">123456:ABC...</code>).</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">5.</span><span>Mande <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">/start</code> pro <strong>@userinfobot</strong> e copie seu próprio chat ID — você vai usar pra liberar só você.</span></li>
+        </ol>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300 text-sm">O token equivale à senha do bot. Se vazar, qualquer um controla seu agente. Trate como senha de banco: nunca commitar, nunca colar em chat público, e se vazou, peça novo no BotFather (<code class="bg-dark-700 px-2 py-0.5 rounded text-sm">/revoke</code>).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Fazer</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Restringir por chat ID (só você fala)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Salvar token só no .env</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar polling no dev, webhook em prod</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Evitar</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Hardcoded do token no código</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Bot público sem allowlist (qualquer um chama)</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Compartilhar print do BotFather</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔑 Chave de modelo (LLM)</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A chave do modelo é o que dá ao seu código permissão de chamar a IA. Sem ela, o agente não pensa. Você tem <strong class="text-emerald-400">quatro caminhos</strong> e a melhor estratégia é usar mais de um.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Os 4 caminhos</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-emerald-400">Anthropic direto:</strong> qualidade alta, preço médio. Pega chave em console.anthropic.com.</li>
+          <li><strong class="text-emerald-400">OpenAI direto:</strong> qualidade alta, ecossistema maduro. platform.openai.com.</li>
+          <li><strong class="text-emerald-400">OpenRouter:</strong> uma chave só, dezenas de modelos, inclui DeepSeek e modelos gratuitos. openrouter.ai.</li>
+          <li><strong class="text-emerald-400">Ollama local:</strong> modelo rodando na sua máquina. Custo zero, mas precisa de GPU decente. ollama.ai.</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Faixa de custo (Maio 2026)</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>~$0,003/mil tokens input</strong> · DeepSeek e modelos gratuitos no OpenRouter</li>
+          <li><strong>~$3/milhão tokens input</strong> · Claude Sonnet, GPT-4 família</li>
+          <li><strong>~$15/milhão tokens input</strong> · Modelos premium (Claude Opus, GPT top)</li>
+          <li><strong>$0</strong> · Ollama local com Llama 3.1, Qwen 2.5 ou Mistral</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Estratégia recomendada</h3>
+        <p class="text-neutral-300 text-sm">Comece com OpenRouter — uma chave, vários modelos. Use DeepSeek ou Llama 3.1 8B pra tarefas simples (centavos por dia), troque pra Claude Sonnet pra raciocínio complexo. Em 2 minutos você muda só a string do modelo no .env e o resto continua igual.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">📦 Bootstrap do projeto</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Aqui você cria o esqueleto: <strong class="text-emerald-400">Node 20+, TypeScript, package.json e tsconfig.json</strong>. Se isso já é familiar pra você, são 3 minutos. Se não é, leia com calma — esse é o terreno onde tudo o resto vai morar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Sequência de comandos</h3>
+        <ol class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-emerald-400">1.</strong> Verifique o Node: <code class="bg-dark-700 px-2 py-0.5 rounded">node -v</code> (se for &lt; 20, atualize via nvm).</li>
+          <li><strong class="text-emerald-400">2.</strong> Crie o projeto: <code class="bg-dark-700 px-2 py-0.5 rounded">mkdir agente && cd agente && npm init -y</code></li>
+          <li><strong class="text-emerald-400">3.</strong> Adicione TypeScript e tsx (executor): <code class="bg-dark-700 px-2 py-0.5 rounded">npm i -D typescript tsx @types/node</code></li>
+          <li><strong class="text-emerald-400">4.</strong> Crie tsconfig com <code class="bg-dark-700 px-2 py-0.5 rounded">npx tsc --init</code> e ajuste target ES2022, module Node16.</li>
+          <li><strong class="text-emerald-400">5.</strong> No package.json, adicione <code class="bg-dark-700 px-2 py-0.5 rounded">"dev": "tsx watch src/index.ts"</code> nos scripts.</li>
+        </ol>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que tsx e não ts-node</h3>
+        <p class="text-neutral-300 text-sm">tsx é mais rápido, lida com ES modules sem dor de cabeça, tem watch mode embutido. Vai te poupar 30 minutos de configuração que você gastaria com alternativas.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔐 Variáveis de ambiente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Token do Telegram, chave do LLM, IDs autorizados — todos esses são <strong class="text-emerald-400">segredos</strong>. Eles ficam num arquivo <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">.env</code> que você nunca commita. Em paralelo, você cria um <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">.env.example</code> com os nomes (sem valores) pra documentar quais variáveis existem.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📝</span> Estrutura mínima do .env</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>TELEGRAM_BOT_TOKEN=123456:ABC-seu-token-real
+ALLOWED_CHAT_IDS=123456789
+LLM_PROVIDER=openrouter
+LLM_API_KEY=sk-or-v1-...
+LLM_MODEL=anthropic/claude-3.5-sonnet
+DATABASE_PATH=./data/agente.db
+TIMEZONE=America/Sao_Paulo</code></pre>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Atenção</h3>
+        <p class="text-neutral-300 text-sm">Antes do primeiro <code class="bg-dark-700 px-2 py-0.5 rounded">git add</code>, confirme que o <code class="bg-dark-700 px-2 py-0.5 rounded">.gitignore</code> tem a linha <code class="bg-dark-700 px-2 py-0.5 rounded">.env</code>. Token vazado no GitHub é descoberto por bots em minutos e usado pra spam — vira problema seu.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📁 Estrutura de pastas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Convenção simples e clara: código vai em <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">src/</code>, dados em tempo real em <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">data/</code>, scripts utilitários em <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">scripts/</code>. Dentro de src, divide por <strong class="text-emerald-400">domínio</strong>, não por tipo.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🌳</span> Layout sugerido</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>agente/
+├── src/
+│   ├── index.ts          # ponto de entrada
+│   ├── config.ts         # carrega .env
+│   ├── memory/           # camadas de memória
+│   ├── llm/              # adapters de modelo
+│   ├── tools/            # ferramentas (web, files, etc)
+│   ├── telegram/         # bot e handlers
+│   └── agent.ts          # loop principal
+├── scripts/              # migrations, seeds, utilitários
+├── data/                 # SQLite, logs (gitignored)
+├── tests/
+├── .env                  # SEGREDOS (gitignored)
+├── .env.example          # template, sem valores
+├── .gitignore
+├── package.json
+└── tsconfig.json</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica</h3>
+        <p class="text-neutral-300 text-sm">Cada pasta dentro de <code class="bg-dark-700 px-2 py-0.5 rounded">src/</code> tem um <code class="bg-dark-700 px-2 py-0.5 rounded">index.ts</code> que exporta o que é público. O resto fica privado. Isso cria uma fronteira clara entre "uso interno do módulo" e "API pro resto do projeto".</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">👋 Primeiro "olá agente"</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Antes de construir loop, memória ou ferramentas, escreva um script de <strong class="text-emerald-400">smoke test</strong>: ele só prova que o Telegram, o LLM e o seu código se conversam. Se isso roda, você está pronto pra escalar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> O que o smoke test faz</h3>
+        <ol class="space-y-2 text-neutral-300 text-sm">
+          <li><strong class="text-emerald-400">1.</strong> Lê o token e a chave do .env via dotenv.</li>
+          <li><strong class="text-emerald-400">2.</strong> Conecta no Telegram e escuta uma única mensagem.</li>
+          <li><strong class="text-emerald-400">3.</strong> Manda essa mensagem pro LLM com um system prompt fixo ("Responda em uma frase").</li>
+          <li><strong class="text-emerald-400">4.</strong> Pega a resposta e envia de volta no chat.</li>
+          <li><strong class="text-emerald-400">5.</strong> Encerra.</li>
+        </ol>
+        <p class="text-neutral-300 text-sm mt-4">Se a resposta chega no seu Telegram, está tudo conectado. Se algo falha, você sabe exatamente em qual das 4 camadas (env, Telegram, LLM, código) corrigir.</p>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🔍</span> Erros comuns nesse passo</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>401 do LLM:</strong> chave errada ou modelo que não existe pra essa chave.</li>
+          <li><strong>Bot não responde:</strong> token errado, ou você não mandou /start pro bot antes.</li>
+          <li><strong>"Cannot find module":</strong> esqueceu npm install depois de adicionar dependência.</li>
+          <li><strong>Resposta truncada:</strong> max_tokens muito baixo no payload do LLM.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Bot do Telegram criado</strong><span class="text-neutral-400"> — token guardado, chat ID conhecido</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Chave do LLM no lugar</strong><span class="text-neutral-400"> — pode trocar provider sem reescrever código</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Projeto Node + TypeScript</strong><span class="text-neutral-400"> — tsx watch rodando</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">.env protegido</strong><span class="text-neutral-400"> — gitignored, com .env.example documentando</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Estrutura de pastas</strong><span class="text-neutral-400"> — separação por domínio, não por tipo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Smoke test passando</strong><span class="text-neutral-400"> — Telegram + LLM conversando</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">1.2 — Identidade e Memória (dar voz ao agente e fazer ele lembrar de você)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar pra Trilha</a>
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Agentejax · Módulo 1.1 · MIT License · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); }
+    else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.3 · Cérebro e Ferramentas | Agentejax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.06); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.06); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(220, 38, 38, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.06); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🤖</span>
+            <span class="font-bold text-lg hidden sm:inline">Agentejax</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../../index.html#trilha2" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Vida do Agente</span></a>
+          <a href="../../index.html#trilha3" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Produção</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🛠 Cérebro e Ferramentas</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">É aqui que o agente para de "só conversar" e passa a executar. Você liga a abstração de LLM, define o sistema de ferramentas, monta o loop e fecha o ciclo respondendo no Telegram.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Médio</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.3</span>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🔌 Camada de LLM</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A camada de LLM é a <strong class="text-emerald-400">única peça que sabe</strong> qual provider está rodando. Pra ela, você passa mensagens e ferramentas. Ela traduz pro formato do provider, chama a API, traduz a resposta pro formato comum, e retorna. O resto do código nunca sabe se é Claude, GPT ou Ollama.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Interface comum</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>type Message = { role: 'system'|'user'|'assistant'|'tool', content: string, tool_calls?: ToolCall[], tool_call_id?: string };
+type ToolCall = { id: string, name: string, args: Record&lt;string, any&gt; };
+type LLMResponse = { content: string, tool_calls: ToolCall[], usage: { input: number, output: number } };
+
+interface LLM {
+  chat(messages: Message[], tools: ToolDef[]): Promise&lt;LLMResponse&gt;;
+}</code></pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que isso é estratégico</h3>
+        <p class="text-neutral-300 text-sm">Em 6 meses, vai sair um modelo melhor. Em um ano, dois ou três. Quem tem essa abstração troca em 5 minutos. Quem não tem, gasta uma semana de refactor — ou simplesmente fica preso no modelo antigo enquanto a concorrência avança.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔧 Anatomia de uma ferramenta</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Uma ferramenta tem três partes: <strong class="text-emerald-400">nome</strong> (identificador), <strong class="text-emerald-400">JSON Schema</strong> (descrição que o LLM lê pra saber quando e como chamar) e <strong class="text-emerald-400">handler</strong> (a função TypeScript que executa de verdade). Esse padrão se repete pra qualquer ferramenta — Notion, Gmail, banco, scraping.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📐</span> Exemplo: ferramenta read_file</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>export const readFile = {
+  name: 'read_file',
+  description: 'Lê o conteúdo de um arquivo em data/ e retorna como texto',
+  schema: {
+    type: 'object',
+    properties: {
+      path: { type: 'string', description: 'Caminho relativo dentro de data/' }
+    },
+    required: ['path']
+  },
+  handler: async ({ path }: { path: string }) =&gt; {
+    const safe = ensureInside('./data', path);   // allowlist
+    const content = await fs.readFile(safe, 'utf8');
+    return content.slice(0, 8000);                // limita tamanho
+  }
+};</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> O que faz uma boa descrição</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li>• Diz <strong>quando usar</strong> a ferramenta, não só o que ela faz</li>
+          <li>• Dá um exemplo curto se o uso é ambíguo</li>
+          <li>• Avisa de limites ("retorna no máximo 8000 chars")</li>
+          <li>• Lista alternativas ("para web, use search_web; para arquivo local, use read_file")</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧰 Ferramentas essenciais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Não comece com 30 ferramentas. Começa com <strong class="text-emerald-400">cinco</strong> e dá pra cobrir 80% das tarefas reais. Adiciona o resto sob demanda, conforme você usa o agente e percebe o que falta.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Kit mínimo</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li><strong class="text-emerald-400">read_file:</strong> ler arquivo do disco (anotações, dados, documentos).</li>
+          <li><strong class="text-emerald-400">write_file:</strong> salvar texto em arquivo (criar nota, exportar resumo).</li>
+          <li><strong class="text-emerald-400">search_web:</strong> buscar na web (Brave Search ou similar — fonte de fatos atuais).</li>
+          <li><strong class="text-emerald-400">fetch_url:</strong> ler conteúdo de uma URL específica (artigos, docs).</li>
+          <li><strong class="text-emerald-400">remember_fact:</strong> atualizar memória central (chave-valor).</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Crescer aos poucos</h3>
+        <p class="text-neutral-300 text-sm">Cada ferramenta nova é mais um item no JSON Schema que vai pro LLM toda chamada. Cento e vinte ferramentas mal escritas confundem o modelo. Quinze bem desenhadas e claramente documentadas ele usa com precisão. Qualidade de descrição importa mais que quantidade.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔄 O loop do agente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O loop é o coração do agente. Ele: (1) chama o LLM com mensagens + ferramentas; (2) se vier <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">tool_calls</code>, executa cada uma e devolve resultado pro LLM; (3) repete até a resposta vir só em texto. É essa repetição que diferencia um <strong class="text-emerald-400">agente</strong> de um chatbot.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Pseudocódigo do loop</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>async function runAgent(userMessage: string) {
+  const messages = [systemPrompt(), ...buffer(), { role: 'user', content: userMessage }];
+  for (let i = 0; i &lt; MAX_ITER; i++) {
+    const res = await llm.chat(messages, tools);
+    messages.push({ role: 'assistant', content: res.content, tool_calls: res.tool_calls });
+
+    if (res.tool_calls.length === 0) {
+      return res.content;                        // resposta final
+    }
+
+    for (const call of res.tool_calls) {
+      const tool = tools.find(t =&gt; t.name === call.name);
+      const result = await tool.handler(call.args);
+      messages.push({ role: 'tool', tool_call_id: call.id, content: String(result) });
+    }
+  }
+  throw new Error('MAX_ITER atingido sem resposta final');
+}</code></pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Cenário típico</h3>
+        <p class="text-neutral-300 text-sm">Você pergunta "resume o último email do Marcelo". O loop faz: (1) LLM chama <code class="bg-dark-700 px-2 py-0.5 rounded">search_emails(from='marcelo')</code>; (2) ferramenta retorna 3 emails; (3) LLM chama <code class="bg-dark-700 px-2 py-0.5 rounded">read_email(id=ultimo)</code>; (4) ferramenta retorna corpo; (5) LLM responde com o resumo. Foram 3 idas-e-vindas dentro de uma mensagem sua.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🚧 Limites e segurança</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Loop sem freio é desastre garantido. <strong class="text-emerald-400">Quatro proteções</strong> são obrigatórias antes de soltar o agente: limite de iterações, allowlist de paths, timeout em rede, e kill switch via env.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Sempre faça</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• <strong>MAX_ITER de 15-20</strong> — para se entrar em loop</li>
+            <li>• <strong>Allowlist explícita</strong> de pastas onde pode ler/escrever</li>
+            <li>• <strong>Timeout de 30s</strong> em fetch e tool calls</li>
+            <li>• <strong>Variável KILL_SWITCH</strong> que desliga o agente sem deploy</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Nunca faça</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Loop sem MAX_ITER (fatura explode)</li>
+            <li>• Permitir paths absolutos no read_file</li>
+            <li>• Executar shell command sem confirmação</li>
+            <li>• Confiar 100% em path validado pelo LLM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Cenário real de prejuízo</h3>
+        <p class="text-neutral-300 text-sm">Sem MAX_ITER: agente entra em espiral chamando a mesma ferramenta com pequenas variações. Você dorme. De manhã, fatura de $300 numa única conversa. Com MAX_ITER de 15: ele para depois de 15 ações e pede ajuda. Custo: zero a mais de fatura.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">✅ Resposta final no Telegram</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O loop terminou, você tem um texto. Agora ele precisa virar mensagem no Telegram — e o Telegram tem regras próprias que pegam todo mundo de surpresa: <strong class="text-emerald-400">limite de 4096 caracteres por mensagem</strong>, parser de Markdown chato (caracteres especiais precisam de escape) e rate limit que pune editar a mesma mensagem rápido demais.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Receita prática</h3>
+        <ol class="space-y-2 text-neutral-300">
+          <li><strong class="text-emerald-400">1.</strong> Use <code class="bg-dark-700 px-2 py-0.5 rounded">parse_mode: 'HTML'</code> em vez de Markdown — escape é mais previsível.</li>
+          <li><strong class="text-emerald-400">2.</strong> Se a resposta passa de 4000 chars, divide em pedaços por parágrafo ou bloco de código.</li>
+          <li><strong class="text-emerald-400">3.</strong> Em retry de 429 (rate limit), espera o tempo que o erro indica.</li>
+          <li><strong class="text-emerald-400">4.</strong> Salva a mensagem do agente no buffer antes de enviar — se Telegram falhar, você não perde o histórico.</li>
+        </ol>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Ganho da Trilha 2</h3>
+        <p class="text-neutral-300 text-sm">Por enquanto, a resposta vai inteira de uma vez. Na <strong>Trilha 2</strong> você adiciona streaming — a mensagem é editada em tempo real conforme o LLM gera. Faz uma diferença gigante na sensação de "ele está pensando agora".</p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Camada de LLM</strong><span class="text-neutral-400"> — uma interface, vários providers, troca a quente</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Anatomia de ferramenta</strong><span class="text-neutral-400"> — nome + schema + handler, padrão pra todas</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Kit de 5 ferramentas</strong><span class="text-neutral-400"> — read, write, search, fetch, remember</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Loop do agente</strong><span class="text-neutral-400"> — pensa, age, lê resultado, repete</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Limites de segurança</strong><span class="text-neutral-400"> — MAX_ITER, allowlist, timeout, kill switch</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Resposta no Telegram</strong><span class="text-neutral-400"> — 4096 chars, HTML mode, retry de 429</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Fim da Trilha 1 — você tem um agente funcional!</h3>
+          <p class="text-neutral-300">A Trilha 2 (Vida do Agente) adiciona streaming, voz, autonomia 24/7, reflexão noturna e skills auto-geradas.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-2.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="../../index.html#trilha2" class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors">Ir pra Trilha 2 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Agentejax · Módulo 1.3 · MIT License · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); }
+    else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

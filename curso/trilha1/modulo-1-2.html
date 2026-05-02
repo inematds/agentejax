@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.2 · Identidade e Memória | Agentejax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5, 150, 105, 0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5, 150, 105, 0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5, 150, 105, 0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5, 150, 105, 0.18); }
+    html:not(.dark) .bg-emerald-900\/20 { background-color: rgba(5, 150, 105, 0.06); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37, 99, 235, 0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37, 99, 235, 0.25); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37, 99, 235, 0.06); }
+    html:not(.dark) .text-red-400 { color: #dc2626; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(220, 38, 38, 0.12); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(220, 38, 38, 0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(220, 38, 38, 0.06); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37, 99, 235, 0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124, 58, 237, 0.08); }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161, 98, 7, 0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161, 98, 7, 0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255, 255, 255, 0.95); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🤖</span>
+            <span class="font-bold text-lg hidden sm:inline">Agentejax</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../../index.html#trilha2" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Vida do Agente</span></a>
+          <a href="../../index.html#trilha3" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Produção</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Identidade e Memória</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Sem identidade, o agente responde como um chatbot genérico. Sem memória, ele esquece tudo. Aqui você dá voz e três camadas de lembrança que fazem toda a diferença.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Conceito</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a>
+      <span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a>
+      <span>/</span>
+      <span class="text-emerald-400">Módulo 1.2</span>
+    </div>
+  </nav>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎭 Personalidade (soul.md)</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A <strong class="text-emerald-400">soul.md</strong> é um arquivo Markdown que define quem o agente é: tom, regras, formato de resposta, o que ele recusa fazer. Ela é injetada como system prompt em toda chamada do LLM. Versionar como Markdown deixa você editar como qualquer outro arquivo do projeto e ver diff no git.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📋</span> O que sempre vai na soul</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-emerald-400">Identidade:</strong> nome do agente, propósito, pra quem trabalha (você).</li>
+          <li><strong class="text-emerald-400">Tom:</strong> formal? casual? direto? bem-humorado? exemplos curtos do estilo.</li>
+          <li><strong class="text-emerald-400">Regras:</strong> sempre responder em PT-BR, mensagens curtas no Telegram, código em bloco, etc.</li>
+          <li><strong class="text-emerald-400">Recusas:</strong> o que não fazer (mandar dados sensíveis em texto puro, ações destrutivas sem confirmar).</li>
+          <li><strong class="text-emerald-400">Fatos sobre você:</strong> nome, fuso, profissão, contexto familiar mínimo.</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Como evoluir a soul</h3>
+        <p class="text-neutral-300 text-sm">Comece com 30 linhas. Use o agente uma semana. Toda vez que ele errar tom ou estilo, abra a soul e adicione a regra ("nunca usar emoji no início da resposta", "preferir bullets sobre parágrafo longo"). Em duas semanas ela está afiada e o agente "soa como você espera".</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">⚙️ Configuração centralizada</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Em vez de espalhar <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">process.env.ALGUMA_COISA</code> por todo o código, você cria <strong class="text-emerald-400">um único módulo</strong> que lê o .env, valida tipos com Zod, e exporta um objeto <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">config</code> tipado. Todo o resto do código importa de lá.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Por que vale a pena</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li>• <strong>Validação na inicialização:</strong> se faltou .env ou tem valor inválido, falha logo no boot — não 3 horas depois numa request real.</li>
+          <li>• <strong>Refactor sem dor:</strong> renomeou uma variável? Muda em um lugar, TypeScript te aponta todas as referências.</li>
+          <li>• <strong>Defaults seguros:</strong> <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">MAX_ITER</code> default 15, <code class="bg-dark-700 px-2 py-0.5 rounded text-sm">TZ</code> default America/Sao_Paulo — sem precisar lembrar.</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Anatomia mínima</h3>
+        <pre class="bg-dark-900 rounded-lg p-4 text-sm text-neutral-300 overflow-x-auto"><code>import { z } from 'zod';
+import 'dotenv/config';
+
+const Schema = z.object({
+  TELEGRAM_BOT_TOKEN: z.string().min(20),
+  ALLOWED_CHAT_IDS: z.string().transform(s => s.split(',').map(Number)),
+  LLM_PROVIDER: z.enum(['openrouter','anthropic','openai','ollama']),
+  LLM_MODEL: z.string(),
+  LLM_API_KEY: z.string().min(10),
+  DATABASE_PATH: z.string().default('./data/agente.db'),
+  TIMEZONE: z.string().default('America/Sao_Paulo'),
+  MAX_ITER: z.coerce.number().default(15),
+});
+
+export const config = Schema.parse(process.env);
+export type Config = typeof config;</code></pre>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">💭 Memória de curto prazo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">É o histórico recente da conversa: as últimas <strong class="text-emerald-400">N mensagens</strong> guardadas em SQLite e re-enviadas a cada chamada do LLM. Sem isso, cada mensagem sua é uma conversa nova — ele esquece o que vocês acabaram de falar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">📐</span> Como dimensionar</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong class="text-emerald-400">Buffer de 40-60 mensagens</strong> serve a maioria dos casos — equivale a uma conversa de uma hora.</li>
+          <li><strong class="text-emerald-400">Mensagens antigas</strong> não somem: ficam no banco e podem ser recuperadas pela memória semântica (tópico 5).</li>
+          <li><strong class="text-emerald-400">Quando o buffer estoura</strong>, descarta o mais velho. Em produção, antes de descartar, summariza num "highlight" de uma linha.</li>
+        </ul>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica</h3>
+        <p class="text-neutral-300 text-sm">Use <code class="bg-dark-700 px-2 py-0.5 rounded">better-sqlite3</code> em vez do <code class="bg-dark-700 px-2 py-0.5 rounded">sqlite3</code> antigo. É síncrono (mais simples), mais rápido, e funciona com TypeScript sem dor. Crie índice em <code class="bg-dark-700 px-2 py-0.5 rounded">(chat_id, created_at)</code> — buscar últimas N fica instantâneo mesmo com 10k mensagens.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">📌 Memória central de fatos</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Uma tabela <strong class="text-emerald-400">chave-valor</strong> com fatos centrais sobre você, que <strong class="text-emerald-400">sempre</strong> entram no system prompt. Diferente do buffer (que rola e descarta), esses fatos são permanentes até você mudar.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🔑</span> Exemplos de fatos centrais</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li>• <strong>nome</strong>: "Nei"</li>
+          <li>• <strong>fuso</strong>: "America/Sao_Paulo"</li>
+          <li>• <strong>profissão</strong>: "consultor de tecnologia, foco em automação"</li>
+          <li>• <strong>família</strong>: "esposa Ana, filhos Pedro (8) e Mariana (5)"</li>
+          <li>• <strong>meta_q2</strong>: "lançar curso de agentes em junho"</li>
+          <li>• <strong>preferência_resposta</strong>: "bullets curtos, sem emoji no início"</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-3">✓ Bons candidatos</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Fatos estáveis (nome, fuso)</li>
+            <li>• Preferências de longo prazo</li>
+            <li>• Contexto de família/trabalho</li>
+            <li>• Metas trimestrais</li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-3">✗ Não é pra cá</h4>
+          <ul class="space-y-2 text-neutral-300 text-sm">
+            <li>• Detalhe de uma conversa única</li>
+            <li>• Estado temporário ("estou no aeroporto")</li>
+            <li>• Histórico transacional (vai pra buffer)</li>
+            <li>• Documentos longos (vai pra semântica)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Budget</h3>
+        <p class="text-neutral-300 text-sm">Mantenha total da memória central abaixo de <strong>~2.000 caracteres</strong> (~500 tokens). Tudo isso vai a cada mensagem — se inflar demais, queima tokens à toa e dilui o foco do agente. Quando passar do limite, é hora de mover fatos antigos pra arquivo histórico.</p>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔍 Memória semântica</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada mensagem que vocês trocam é convertida em um <strong class="text-emerald-400">embedding</strong> (vetor numérico que representa o significado) e indexada num banco vetorial. Quando você pergunta algo, o agente busca os trechos mais parecidos em significado — não em palavras exatas.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Por que muda o jogo</h3>
+        <p class="text-neutral-300 mb-3">Você diz: <em>"Lembra daquele cliente que reclamou de prazo lá no início do ano?"</em></p>
+        <p class="text-neutral-300 mb-3">Sem memória semântica: ele só vê as últimas 40 mensagens, não acha nada, responde "qual?".</p>
+        <p class="text-neutral-300">Com memória semântica: busca por similaridade (não pela palavra "prazo"), encontra a conversa de fevereiro com o cliente Marcelo, e responde com o contexto certo.</p>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🔧</span> Opções de banco vetorial</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>Pinecone:</strong> serverless, free tier de 100k vetores, configura em 2 minutos. Bom pra começar.</li>
+          <li><strong>sqlite-vec:</strong> extensão SQLite, roda local, sem custo, sem internet. Bom se já usa SQLite.</li>
+          <li><strong>Qdrant:</strong> open-source, roda em Docker, escalável. Bom pra depois de 100k vetores.</li>
+          <li><strong>Modelo de embedding:</strong> text-embedding-3-small (OpenAI, $0.02/M tokens) ou nomic-embed via Ollama (grátis local).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🪜 Estratégia das 3 camadas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A regra prática é simples: cada camada tem um custo e um benefício. Você usa <strong class="text-emerald-400">camadas 1 e 2 sempre</strong>, e <strong class="text-emerald-400">camada 3 sob demanda</strong> via tool call.</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Resumo decisório</h3>
+        <div class="space-y-4 text-neutral-300">
+          <div class="border-l-2 border-emerald-500/40 pl-4">
+            <strong class="text-emerald-400">Camada 1 — Central</strong>
+            <p class="text-sm">Sempre vai. ~500 tokens. Fatos sobre você. Mudança rara.</p>
+          </div>
+          <div class="border-l-2 border-emerald-500/40 pl-4">
+            <strong class="text-emerald-400">Camada 2 — Buffer recente</strong>
+            <p class="text-sm">Sempre vai. ~2.000-5.000 tokens. Últimas 40-60 mensagens. Continuidade.</p>
+          </div>
+          <div class="border-l-2 border-emerald-500/40 pl-4">
+            <strong class="text-emerald-400">Camada 3 — Semântica</strong>
+            <p class="text-sm">Só quando o agente decide chamar a tool <code class="bg-dark-700 px-2 py-0.5 rounded">buscar_memoria(query)</code>. Pode trazer 5-10 trechos relevantes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💰</span> Impacto no custo</h3>
+        <p class="text-neutral-300 text-sm">Mandar tudo a cada mensagem (sem essa hierarquia) facilmente triplica seu gasto mensal de tokens. A diferença entre $5/mês e $50/mês vem de onde você corta — e cortar inteligentemente é exatamente isso aqui.</p>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">soul.md no lugar</strong><span class="text-neutral-400"> — agente tem voz, regras e recusas claras</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Config validada</strong><span class="text-neutral-400"> — Zod garante que o boot só sobe com tudo certo</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Buffer de curto prazo</strong><span class="text-neutral-400"> — SQLite com últimas 40-60 mensagens</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Memória central</strong><span class="text-neutral-400"> — fatos chave-valor sempre injetados</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Memória semântica</strong><span class="text-neutral-400"> — busca por significado quando precisa</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Estratégia das 3 camadas</strong><span class="text-neutral-400"> — uso eficiente de tokens, custo controlado</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">1.3 — Cérebro e Ferramentas (camada de LLM, sistema de tools, e o loop que junta tudo)</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-1-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo Anterior</a>
+          <a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Agentejax · Módulo 1.2 · MIT License · 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark'); }
+    else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
