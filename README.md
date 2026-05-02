@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/agentejax-hero.png" alt="AgenteJAX" width="100%">
+  <img src="assets/agentejax-hero.webp" alt="AgenteJAX" width="100%">
 </p>
 
 # Agentejax
