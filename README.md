@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/agentejax-hero.png" alt="AgenteJAX" width="100%">
+</p>
+
 # Agentejax
 
 > Curso prático em PT-BR para você construir do zero seu próprio agente de IA pessoal — em TypeScript, rodando 24/7 no Telegram, com memória, ferramentas e autonomia. Sem framework fechado, sem lock-in, com cada linha sendo sua.
